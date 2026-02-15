@@ -189,8 +189,8 @@
             const ind = document.getElementById('indicatorSelect').value, box = document.getElementById('indicatorBox'), nameEl = document.getElementById('indicatorName');
             let color = "white", name = "Potenciómetro";
             if (ind === 'fenol') { name = "Fenolftaleína"; color = ph > 8.2 ? `rgba(236, 72, 153, ${Math.min((ph-8.2)/1.8, 0.8)})` : "white"; }
-            else if (ind === 'azul') { name = "Azul Bromotimol"; if (ph < 6.0) color = "#fef08a"; else if (ph > 7.6) color = "#93c5fd"; else color = "#86efac"; }
-            else if (ind === 'metilo') { name = "Naranja de Metilo"; if (ph < 3.1) color = "#fca5a5"; else if (ph > 4.4) color = "#fdba74"; else color = "#fde047"; }
+            else if (ind === 'azul') { name = "Azul de Bromotimol"; if (ph < 6.0) color = "#fef08a"; else if (ph > 7.6) color = "#93c5fd"; else color = "#86efac"; }
+            else if (ind === 'metilo') { name = "Anaranjado de Metilo"; if (ph < 3.1) color = "#fca5a5"; else if (ph > 4.4) color = "#fdba74"; else color = "#fde047"; }
             box.style.backgroundColor = color; nameEl.innerText = name;
         }
 
@@ -206,5 +206,6 @@
 </body>
 
 </html>
+
 
 
