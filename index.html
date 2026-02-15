@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Simulador de Titulación Master</title>
+    <title>Simulador de Titulación</title>
     <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/3655/3655611.png">
     <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/3655/3655611.png">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
@@ -72,22 +72,22 @@
 
             <div class="grid grid-cols-2 gap-2">
                 <select id="titrationType" class="w-full bg-slate-50 p-3 rounded-xl border font-bold text-[10px] border-slate-200 outline-none">
-                    <option value="ff">HCl (F) + NaOH (F)</option>
-                    <option value="df" selected>CH₃COOH (D) + NaOH (F)</option>
-                    <option value="fd">NH₄OH (D) + HCl (F)</option>
+                    <option value="ff">HCl (AF) + NaOH (BF)</option>
+                    <option value="df" selected>CH₃COOH (AD) + NaOH (BF)</option>
+                    <option value="fd">NH₄OH (BD) + HCl (HF)</option>
                 </select>
                 <select id="indicatorSelect" class="w-full bg-slate-50 p-3 rounded-xl border font-bold text-[10px] border-slate-200 outline-none">
                     <option value="ninguno">Sin Indicador</option>
                     <option value="fenol">Fenolftaleína (8.2 - 10)</option>
-                    <option value="azul">Azul Bromotimol (6 - 7.6)</option>
-                    <option value="metilo">Naranja de Metilo (3.1 - 4.4)</option>
+                    <option value="azul">Azul de Bromotimol (6 - 7.6)</option>
+                    <option value="metilo">Anaranjado de Metilo (3.1 - 4.4)</option>
                 </select>
             </div>
 
             <button id="resetBtn" class="w-full bg-red-500 text-white text-[10px] font-bold py-3 rounded-xl shadow-md active:scale-95 transition-all">REINICIAR EXPERIMENTO</button>
 
             <div class="text-center pt-2 border-t border-slate-100">
-                <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Desarrollado por [Tu Nombre]</p>
+                <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Profesora Yasmin Román</p>
             </div>
         </div>
     </div>
@@ -204,4 +204,5 @@
         window.onload = resetAll;
     </script>
 </body>
+
 </html>
