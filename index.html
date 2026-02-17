@@ -173,17 +173,23 @@
                 gotaAnim.style.display = 'block';
                 setTimeout(() => gotaAnim.style.display = 'none', 300);
             }
-            lastV = v;
 
-            document.getElementById('volValue').innerText = v.toFixed(2) + " mL";
-            document.getElementById('phDisplay').innerText = ph.toFixed(2);
-            document.getElementById('vTotalDisplay').innerText = (V0 + v).toFixed(2);
-            document.getElementById('dropCount').innerText = Math.round(v * 20);
+            // CORRECCIÓN: Borrar puntos adelantados si retrocedemos el volumen
+            recordedData = recordedData.filter(p => p.x <= v);
 
             if (!recordedData.some(p => Math.abs(p.x - v) < 0.01)) {
                 recordedData.push({x: v, y: ph});
                 recordedData.sort((a, b) => a.x - b.x);
             }
+
+            lastV = v;
+            document.getElementById('volValue').innerText = v.toFixed(2) + " mL";
+            document.getElementById('phDisplay').innerText = ph.toFixed(2);
+            document.getElementById('vTotalDisplay').innerText = (V0 + v).toFixed(2);
+            document.getElementById('dropCount').innerText = Math.round(v * 20);
+
+            // Sincronizar gráfica
+            chart.data.datasets[0].data = recordedData;
             chart.update('none');
 
             const ind = document.getElementById('indicatorSelect').value, box = document.getElementById('indicatorBox'), nameEl = document.getElementById('indicatorName');
@@ -194,18 +200,25 @@
             box.style.backgroundColor = color; nameEl.innerText = name;
         }
 
-        document.getElementById('btnPlus').addEventListener('click', () => { const s = document.getElementById('volSlider'); s.value = parseFloat(s.value) + 0.05; updateUI(); });
-        document.getElementById('btnMinus').addEventListener('click', () => { const s = document.getElementById('volSlider'); s.value = parseFloat(s.value) - 0.05; updateUI(); });
+        document.getElementById('btnPlus').addEventListener('click', () => { const s = document.getElementById('volSlider'); s.value = (parseFloat(s.value) + 0.05).toFixed(2); updateUI(); });
+        document.getElementById('btnMinus').addEventListener('click', () => { const s = document.getElementById('volSlider'); s.value = (parseFloat(s.value) - 0.05).toFixed(2); updateUI(); });
         document.getElementById('volSlider').addEventListener('input', updateUI);
         document.getElementById('titrationType').addEventListener('change', resetAll);
         document.getElementById('indicatorSelect').addEventListener('change', () => { initChart(); updateUI(); });
         document.getElementById('resetBtn').addEventListener('click', resetAll);
-        function resetAll() { recordedData = [{x: 0, y: calculatePH(0, document.getElementById('titrationType').value)}]; document.getElementById('volSlider').value = 0; initChart(); updateUI(); }
+        
+        function resetAll() { 
+            recordedData = [{x: 0, y: calculatePH(0, document.getElementById('titrationType').value)}]; 
+            document.getElementById('volSlider').value = 0; 
+            initChart(); 
+            updateUI(); 
+        }
         window.onload = resetAll;
     </script>
 </body>
 
 </html>
+
 
 
 
